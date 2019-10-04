@@ -1,0 +1,31 @@
+1.2  安装webpack server
+	npm install webpack-dev-server html-webpack-plugin --save-dev
+
+1.3 在webpack.dev.config.js中增加
+    const path = require('path')
+    const HtmlWebpackPlugin = require('html-webpack-plugin')
+    plugins: [
+    		new HtmlWebpackPlugin({
+    			template: "./index.html"
+    		})
+    	]
+    完整版本:
+    const path = require('path')
+    const HtmlWebpackPlugin = require('html-webpack-plugin')
+    module.exports = {
+    	entry:'./src/index.js',
+    	output:{
+    		path:__dirname,
+    		filename:'./release/bundle.js'
+    	},
+    	plugins: [
+    		new HtmlWebpackPlugin({
+    			template: "./index.html"
+    		})
+    	]
+    }
+
+1.4 增加babel解析es6语法
+    npm install babel-core babel-loader babel-polyfill babel-preset-es2015 babel-preset-latest --save-dev
+    babel-core 是6版本,如果是babel-loader是8版本的则会报在node_modules找不到这个文件
+    解决方式: 1.4.1 把babel-loader先删除,然后再指定版本重新安装
